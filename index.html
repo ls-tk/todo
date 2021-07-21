@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{todoList.length===0?'ロージーのお仕事がありません。':''}}<br>
+        {{inputText}}<br>
+        <input v-model="inputText">
+        <button @click="addTodoList()">ToDoリストに追加</button>
+        <p>
+            追加されたToDoの数：{{ todoList.length }}<br>
+            完了したToDoの数：{{ completedTodoList.length }}
+        </p>
+        <p>ToDOリスト</p>
+        <ul>
+            <li v-for="(todo,index) in todoList" :key="index">
+                <input type="checkbox" v-model="todo.isDone">
+                <span>{{todo.text}}{{todo.isDone?'(OK)':''}}</span>
+                <button @click="deleteTodo(index)">削除</button>
+            </li>
+        </ul>
+        <p>完了したToDo：</p>
+        <ul>
+            <li v-for="(todo,index) in completedTodoList" :key="index">
+                <span>{{todo.text}}</span>
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
